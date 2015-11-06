@@ -13,6 +13,7 @@ pages:
   - 初始化 SDK 與回報 Activity 生命周期: sdk-initialization.md  
 - 廣告版位整合:
   - 原生廣告: native-ad-integration.md
+- 程式碼混淆: proguard.md
 - 正式上線檢查要點: checkpoint.md
 - 問題集: faq.md
 - API 參考: api-reference.md
