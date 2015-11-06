@@ -8,7 +8,7 @@ private NativeAd  nativeAd;
 private MediaView mediaView;
 
 private void showNativeAd() {
-    nativeAd = new NativeAd(this, “YOUR_PLACEMENT_NAME”);
+    nativeAd = new NativeAd(this, “廣告版位名稱”);
     nativeAd.setAdListener(new AdListener() {
         @Override
         public void onError(NativeAd ad, AdError error) {}
@@ -17,7 +17,7 @@ private void showNativeAd() {
 
         @Override
         public void onAdLoaded(NativeAd ad) {
-            if (ad !== nativeAd) { 
+            if (ad != nativeAd) { 
                 return; 
             }
       
@@ -27,17 +27,19 @@ private void showNativeAd() {
             String titleForCallToAction = nativeAd.getAdCallToAction();
             String textForAd = nativeAd.getAdBody();
 
-            // Create you custom view in a ad view. For example :
+            // 利用原生廣告建立客製化版面 例如：
+            // (1) 產生廣告元件
             LinearLayout nativeAdContainer = new LinearLayout(this);
             TextView titleLabel = new TextView(this);
             titleLabel.setText(titleForAd);
 
-			// Destory previous media view
+			// (2) 銷毀之前的MediaView
 			if (mediaView != null) {
 				mediaView.destroy();
 				mediaView = null;
 			}
 			
+            // (3) 建立MediaView
             mediaView = new MediaView(this);
             mediaView.setNativeAd(nativeAd);
             mediaView.setAutoplay(true);
@@ -45,9 +47,11 @@ private void showNativeAd() {
             nativeAdContainer.addView(titleLabel);
             nativeAdContainer.addView(mediaView);
       
-            // … Layout your own native ad components
+            // (4) 制定原生廣告版面
+            // ...
+            // ...
       
-            // Add Ad to your layout
+            // (5) 將廣告元件加入至頁面佈局裡
             LinearLayout mainContainer = (LinearLayout) findViewById(R.id.MainContainer);
             mainContainer.addView(nativeAdContainer);
 
