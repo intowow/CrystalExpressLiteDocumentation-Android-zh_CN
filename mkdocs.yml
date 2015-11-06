@@ -7,7 +7,7 @@ pages:
 - 首頁: index.md
 - 名詞定義: terminology.md
 - 整合前置步驟:
-  - 申請 Crystal ID 與版位設定: parpare.md
+  - 申請 Crystal ID 與版位規劃: prepare.md
   - SDK 安裝: sdk-setup.md  
   - 設定 AndroidManifest.xml: setup-androidmanifest.md
   - 初始化 SDK: sdk-initialization.md
