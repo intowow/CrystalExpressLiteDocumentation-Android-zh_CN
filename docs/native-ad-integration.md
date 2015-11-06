@@ -4,7 +4,9 @@
   - 註冊可互動廣告子元件
   
 ``` android
-private NativeAd nativeAd;
+private NativeAd  nativeAd;
+private MediaView mediaView;
+
 private void showNativeAd() {
     nativeAd = new NativeAd(this, “YOUR_PLACEMENT_NAME”);
     nativeAd.setAdListener(new AdListener() {
@@ -30,7 +32,13 @@ private void showNativeAd() {
             TextView titleLabel = new TextView(this);
             titleLabel.setText(titleForAd);
 
-            NativeAd.MediaView mediaView = new MediaView(this);
+			// Destory previous media view
+			if (mediaView != null) {
+				mediaView.destroy();
+				mediaView = null;
+			}
+			
+            mediaView = new MediaView(this);
             mediaView.setNativeAd(nativeAd);
             mediaView.setAutoplay(true);
       
@@ -56,3 +64,37 @@ private void showNativeAd() {
 }
 
 ```
+
+  - 控制原生廣告播放
+``` java
+  @Override
+  public void onPause() {
+	// 其他應用程式邏輯
+	
+	// 暫停播放廣告內容
+	if (mediaView != null) {
+	  mediaView.stop();
+	}
+  }
+  
+  @Override
+  public void onResume() {
+  	// 其他應用程式邏輯
+	
+	// 自動播放廣告內容
+	if (mediaView != null) {
+	  mediaView.play();
+	}
+  }
+```
+
+  - 清除廣告資源
+``` android
+  @Override
+  public void onDestroy() {
+    if (mediaView != null) {
+      mediaView.destroy();
+	  mediaView = null;
+	}
+  }
+```  

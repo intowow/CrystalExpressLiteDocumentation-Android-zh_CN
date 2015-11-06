@@ -7,7 +7,7 @@ import com.intowow.sdk.*;
 - (**正常模式**) : 在應用程式起始 Activity 的 onCreate 函數中調用 I2WSDK.init(Context) API。
 ``` java
 @Override
-protected void onCreate() {
+public void onCreate() {
   // ... 其他應用程式邏輯
   
   I2WSDK.init(this);
@@ -17,7 +17,7 @@ protected void onCreate() {
 - (**測試模式**) : 在應用程式起始 Activity 的 onCreate 函數中調用 I2WSDK.init(Context, true) API。
 ``` java
 @Override
-protected void onCreate() {
+public void onCreate() {
   // ... 其他應用程式邏輯
   
   I2WSDK.init(this, true);
@@ -28,7 +28,7 @@ protected void onCreate() {
 - 在應用程式所有 Activity 的 onResume 函數中調用 I2WSDK.onActivityResume(Activity) API。
 ``` java
 @Override
-protected void onResume() {
+public void onResume() {
   // ... 其他應用程式邏輯
   
   I2WSDK.onActivityResume(this);
@@ -38,7 +38,7 @@ protected void onResume() {
 - 在應用程式所有 Activity 的 onPause 函數中調用 I2WSDK.onActivityPause(Activity) API。
 ``` java
 @Override
-protected void onPause() {
+public void onPause() {
   // ... 其他應用程式邏輯
   
   I2WSDK.onActivityPause(this);

@@ -6,6 +6,9 @@ TBD
 
 TBD
 
+### 相依函式庫
+- android-support-v4.jar
+
 ### 需求與限制
 
 - SDK 最低支援 Android 2.2 以上手機
