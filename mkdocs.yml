@@ -8,10 +8,9 @@ pages:
 - 名詞定義: terminology.md
 - 整合前置步驟:
   - 申請 Crystal ID 與版位規劃: prepare.md
-  - SDK 安裝: sdk-setup.md  
+  - SDK 安裝: sdk-installation.md  
   - 設定 AndroidManifest.xml: setup-androidmanifest.md
-  - 初始化 SDK: sdk-initialization.md
-  - 回報 Activity 生命周期: report-activity-lifecycle.md
+  - 初始化 SDK 與回報 Activity 生命周期: sdk-initialization.md  
 - 廣告版位整合:
   - 原生廣告: native-ad-integration.md
 - 檢查要點: checkpoint.md
