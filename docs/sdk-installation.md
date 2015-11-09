@@ -1,13 +1,14 @@
-### 下載 SDK 包
+### 下載 CrystalExpress&trade; SDK Lite
 
 TBD
+
+### 安裝
+- 將 crystalexpress.jar 複製到 App 專案中的 libs 資料夾。
+- 將 Android v4 Support Library 添加到您的 App 專案中。
 
 ### 範例程式
 
 TBD
-
-### 相依函式庫
-- android-support-v4.jar
 
 ### 需求與限制
 

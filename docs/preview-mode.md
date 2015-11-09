@@ -1,5 +1,5 @@
 ### 配置步驟
-在 AndroidManifest.xml 裡的起始 `Activity` 中加入新的 `深度連結 (Deeplink)` 設定
+要啟用測試模式，您必須在 AndroidManifest.xml 裡的起始 `Activity` 中加入 `深度連結 (Deeplink)` 設定
 
 ``` xml
 <intent-filter>
@@ -11,9 +11,10 @@
 </intent-filter>
 ```
 
-再將此 `APP_URL_SCHEME` 告知 intowow 相關負責人員，等 CrystalExpress 平台設定完成後方可進行預覽測試。
+- `APP_URL_SCHEME` 只能是小寫英數字，通常是您的 App 名稱。
+- 將 `APP_URL_SCHEME` 告知您的 intowow 聯絡窗口，待 CrystalExpress&trade; 平台設定完成後方可進行預覽測試。
 
 ### 預覽測試步驟
-1. intowow 相關負責人員將提供一組 `QRCode`，開發人員用實體手機掃瞄此 `QRCode` 後將開起 SDK 預覽模式
-2. 當 SDK 設定為預覽模式，開發人員將看到一則由 intowow 負責人員所設定的測試廣告
-3. 測試完成後需強制停止應用程式，此時 SDK 將離開測試模式
+1. 聯絡您的廣告營運人員，告知想要預覽的廣告代號 (Ad ID)，營運人員便可以透過 CrystalExpress&trade; 後台產生一組 QRCode。
+2. 開發人員用實體手機掃瞄此 QRCode 後將開起 SDK 預覽模式，並且可以看到所要求的廣告。
+3. 測試完成後需強制停止 App，此時 SDK 將離開測試模式。
