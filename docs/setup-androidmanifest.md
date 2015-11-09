@@ -8,6 +8,16 @@
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
+#### 設定 Activity
+CrystalExpress&trade; SDK Lite 支援 In-App 瀏覽，您必須在 Activity 裏新增以下的設定。
+``` xml
+<activity
+  android:name="com.intowow.sdk.WebViewActivity"
+  android:configChanges="orientation|screenSize"
+  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+</activity>
+```
+
 #### 設定 Receiver
 ``` xml
 <receiver android:name="com.intowow.sdk.ScheduleReceiver" android:exported="false">
@@ -19,5 +29,5 @@
 
 #### 設定 Crystal ID
 ``` xml
-<meta-data android:name="CRYSTAL_ID" android:value="Intowow提供的CRYSTAL_ID" />
+<meta-data android:name="CRYSTAL_ID" android:value="intowow提供的CRYSTAL_ID" />
 ```
