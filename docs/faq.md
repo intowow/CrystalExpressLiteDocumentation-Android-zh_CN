@@ -13,7 +13,7 @@
   - 確認 App 中所使用的廣告版位名稱與後台設定相符
 
 ### 整合 SDK 後的 App 大小會增加多少？
- - CrystalExpress&trade; SDK Lite 大小約為 57KB，整合您的 App 後大約會增加 57KB。
+ - CrystalExpress&trade; SDK Lite 大小約為 66KB，整合您的 App 後大約會增加 66KB。
  - 如果您對整個 App (包含 CrystalExpress&trade; SDK Lite) 進行程式碼混淆，App 的大小可以再減少。 
 
 ### SDK 存取哪些用戶資料與裝置權限
