@@ -13,6 +13,7 @@ pages:
   - 初始化 SDK 與回報 Activity 生命周期: sdk-initialization.md  
 - 廣告版位整合:
   - 原生廣告: native-ad-integration.md
+  - 開機蓋屏: interstitial-ad-integration.md
 - 預覽模式: preview-mode.md
 - 程式碼混淆: proguard.md
 - 正式上線檢查要點: checkpoint.md

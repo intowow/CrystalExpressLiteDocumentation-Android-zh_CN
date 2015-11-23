@@ -18,6 +18,17 @@ CrystalExpress&trade; SDK Lite 支援 In-App 瀏覽，您必須在 Activity 裏�
 </activity>
 ```
 
+若需要整合開機蓋屏，可加入下面設定
+``` xml
+<activity
+  android:name="com.intowow.sdk.InterstitialAdActivity"
+  android:configChanges="orientation|screenSize"
+  android:launchMode="singleTask"
+  android:screenOrientation="portrait"
+  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+</activity>
+```
+
 #### 設定 Receiver
 ``` xml
 <receiver android:name="com.intowow.sdk.ScheduleReceiver" android:exported="false">
