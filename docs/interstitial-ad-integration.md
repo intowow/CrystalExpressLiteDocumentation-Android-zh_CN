@@ -1,7 +1,9 @@
 <h3 id='opensplash' style='color:red'>開機蓋屏</h3>
 
 - 開機蓋屏廣告指進入應用程式時，所出現的蓋屏廣告。
-- 出現時機為首次啟動應用程式(`launch flow`)
+- 其出現時機包含
+	- 首次啟動應用程式(`launch flow`)
+	- 按`HOME`鍵離開應用程式後，再次開啟應用程式(`enter foreground`)
 
 <img style="display:block; margin:auto;" src="https://s3.cn-north-1.amazonaws.com.cn/intowow-common/preview/img/splash2-demo.png" alt="splash demo" width="250">
 
@@ -10,7 +12,7 @@
 ---------------------------------------
 
 
-<h4 id='opensplash-1' style='color:green'>整合步驟</h4>
+####整合步驟
 
 <span style='font-weight: bold;color:red'>
 註:
@@ -232,7 +234,7 @@
 ```java
 @Override
 protected void onDestroy() {
-  releaseSplashAd();
+  releaseInterstitialAd();
 
   //...
   //...
@@ -241,6 +243,101 @@ protected void onDestroy() {
 }
 ```
 <p/>
+
+
+---------------------------------------
+
+
+<h3 id='opensplash-enterforeground' style='color:blue'>2. 按`HOME`鍵離開應用程式後，再次開啟應用程式(enter foreground)</h3>
+
+<span style='font-weight: bold;color:red'>
+註:
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+此部分因為使用Application的ActivityLifecycleCallbacks判斷應用程式的前景與背景，
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+所以只支援Android 4.0以上。
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+若應用程式已有自己的Application.java，可改將BaseApplication.java的邏輯直接加入應用程式的Application.java裡
+</span>
+<br/>
+
+- 將範例程式裡的`BaseApplication.java`加入至程式中
+
+- 設定`AndroidManifest.xml`的`application`標籤 ，指定使用`BaseApplication.java`類別
+
+```xml
+<application
+    android:name="{your BaseApplication package}.BaseApplication"
+    android:XXX
+    android:XXX
+    XXX >
+```
+
+- 修改`BaseActivity.java`，在`onCreate()`裡啟動`BaseApplication`
+
+```java
+//	you can launch the BaseApplication.java
+//	for requesting the enter foreground interstitial ad
+//
+getApplicationContext();
+```
+
+
+- 修改`BaseApplication.java`裡的`FILTER_ACTIVITY_NAMES`字串陣列，此陣列列出`不呼叫`開機蓋屏的`Activity`。
+請填入起始`Activity`，或其他不須呼叫開機蓋屏的`Activity`
+
+<br/>[程式範例][BaseApplication.java]
+
+<codetag tag="OpenSplash-FILTER_ACTIVITY_NAMES" id="OpenSplash-FILTER_ACTIVITY_NAMES"/>
+```java
+//	TODO
+//	你可以修改此字串陣列
+//	加入字串陣列中的類別名稱將不會呼叫開機蓋屏
+//
+private final static String[] FILTER_ACTIVITY_NAMES = new String[] {
+
+	//	================================================
+	//	請填入起始Activity，或其他不須呼叫開機蓋屏的Activity
+	//
+	//  例如：LauncherActivity.class.getName(),
+
+	//	=====  請不要移除以下SDK的activity
+	//
+	InterstitialAdActivity.class.getName(),	// 此SDK的activity，請不要移除它
+	WebViewActivity.class.getName()			// 此SDK的activity，請不要移除它
+}; 
+```
+<p/>
+
+<span style='font-weight: bold;color:red'>
+註:
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+請勿移除SDK的InterstitialAdActivity與WebViewActivity
+</span>
+
+- 除錯方式
+```
+當應用程式從主頁面按HOME出去後，
+checkBackground()裡的mActiveReferenceCount會等於0
+
+過兩秒後，mEnterBackgroundTimer裡
+會將mIsEnterFromBackground設為true
+
+此時再開啟APP後，onActivityResumed()的callback裡
+會因為mIsEnterFromBackground = true
+而進入requestEnterForegroundInterstitialAd()
+排除過濾邏輯後
+最後會產生一個新的InterstitialAd物件並呼叫loadAd()
+向SDK要求蓋屏廣告
+```
 
 ---------------------------------------
 
@@ -268,6 +365,61 @@ protected void onDestroy() {
     res/anim/damping_out.xml
 </span>
 <p/>
+
+---------------------------------------
+
+####注意事項
+
+<br/>
+<span style='font-weight: bold;color:red'>
+1.如有需要，APP端需負責處理要求廣告的間隔，避免每次一進入APP就向SDK要求廣告。
+範例如下：
+```java
+private final static long REQUEST_INTERVAL = 1000 * 60 * 5; // 每隔5分鐘再要一次廣告
+private long mRequestTime = 0L;
+
+long now = System.currentTimeMillis();
+if( now - mRequestTime  < REQUEST_INTERVAL  ) {
+	return;
+}
+
+mRequestTime  = now;
+
+// 
+//
+//向SDK要求廣告
+//...
+//...
+```
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+2.若要不到SDK廣告，可接者再去要原本的廣告．
+範例如下：
+```java
+mInterstitialAd.setAdListener(new InterstitialAdListener() {
+
+	@Override
+	public void onError(Ad ad, AdError error) {
+								
+		onInterstitialAdFinish();
+		
+		// 在此處裡去要APP原本的廣告
+		// ...
+	}
+	
+	@Override
+	public void onAdLoaded(Ad ad) {
+		// ...
+		// ...
+```
+</span>
+<br/>
+<span style='font-weight: bold;color:red'>
+3.測試後，若Interstitial廣告撥放不順，有可能是受到APP的初始流程影響，可將初較複雜的初始流程再延後執行，如放到onError()或者onInterstitialDismissed()裡面．
+<p/>
+
+---------------------------------------
 
 
 [slide_in_from_bottom]:https://github.com/ddad-daniel/CrystalExpressSDK-CN-Demo/blob/master/res/anim/slide_in_from_bottom.xml
