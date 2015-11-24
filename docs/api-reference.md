@@ -321,3 +321,186 @@ boolean isFullScreen ()
   */
 void setFullScreenMode (FullScreenMode mode)
 ```
+
+-------------------------------
+
+### InterstitialAd
+
+An interstitial ad is a full screen ad that you can show in your app.
+
+*** Constructor ***
+```
+/**
+ * Constructs a InterstitialAd using the given context and placement.
+ *
+ * @param context Android context
+ * @param placement Placement name
+ */
+InterstitialAd (Context context, String placement)
+```
+
+*** Instance Methods ***
+
+```
+ /**
+  * Sets ad event callback listener.
+  *
+  * @param listener Interstitial Ad event callback listener
+  */
+void setAdListener (InterstitialAdListener listener)
+```
+
+```
+ /**
+  * Loads an ad.
+  */
+void loadAd ()
+```
+
+```
+ /**
+  * Loads an ad.
+  * @param timeout request timeout in millisecond, if timeout is zero, we will use blocking call in the main thread
+  */
+void loadAd (long timeout)
+```
+
+```
+ /**
+  * If your interstitial ad has been loaded successfully, 
+  * then you can call this method to pop-up the intersitital ad
+  */
+void show ()
+```
+
+```
+ /**
+  * If your interstitial ad has been loaded successfully, you can call this method
+  * to show the interstitial ad.
+  * 
+  * the overridePendingTransition is only support single-offer and portrait
+  * ad
+  * 
+  * @param enterAnim A resource ID of the animation resource to use for the incoming activity. Use 0 for no animation.
+  * @param exitAnim A resource ID of the animation resource to use for the outgoing activity. Use 0 for no animation.
+  **/
+void show (int enterAnim, int exitAnim)
+```
+
+```
+ /**
+  * Set interstitial ad auto close after engaged
+  * @param isAutoClose 
+  */
+void setAutoCloseWhenEngaged (boolean isAutoClose)
+```
+
+```
+ /**
+  * Destroy and release memory
+  */
+void void destroy ()
+```
+
+```
+ /**
+  * To close the interstitial ad directly
+  */
+String close ()
+```
+
+```
+ /**
+  * @return The ad id.
+  */
+int getAdId ()
+```
+
+```
+ /**
+  * @return The engage url.
+  */
+String getEngageUrl ()
+```
+
+-------------------------------
+
+### InterstitialAd.InterstitialAdListener
+
+The InterstitialAdListener interface is notified of events in the ad control life-cycle.
+
+*** Instance Methods ***
+
+```
+ /**
+  * Called when an error happened while the ad control is attempting to load an ad.
+  * 
+  * @param ad The ad control
+  * @param error Error
+  */
+void onError (Ad ad, AdError error)
+```
+
+```
+ /**
+  * Called when the ad control has loaded an ad
+  *
+  * @param ad The ad control
+  */
+void onAdLoaded (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control is clicked and user is 
+  * redirected to the link in the ad.
+  *
+  * @param ad The ad control
+  */
+void onAdClicked (Ad ad)
+```
+
+```
+ /**
+  * Where relevant, use this function to pause your app's flow
+  *
+  * @param ad The ad control
+  */
+void onInterstitialDisplayed (Ad ad)
+```
+
+```
+ /**
+  * Use this function to resume your app's flow
+  *
+  * @param ad The ad control
+  */
+void onInterstitialDismissed (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has impressioned an ad
+  *
+  * @param ad The ad control
+  */
+void onAdImpression (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has muted an ad
+  *
+  * @param ad The ad control
+  */
+void onAdMute (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has unmuted an ad
+  *
+  * @param ad The ad control
+  */
+void onAdUnmute (Ad ad)
+```
