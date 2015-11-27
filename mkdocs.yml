@@ -11,7 +11,13 @@ pages:
   - SDK 安裝: sdk-installation.md  
   - 設定 AndroidManifest.xml: setup-androidmanifest.md
   - 初始化 SDK 與回報 Activity 生命周期: sdk-initialization.md  
+- 廣告類型:
+  - 蓋屏廣告: splash-ad.md
+  - 卡片廣告: card-ad.md
+  - 原生廣告: native-ad.md
 - 廣告版位整合:
+  - 開機蓋屏: interstitial-ad-integration.md
+  - 內文廣告: content-ad-integration.md
   - 原生廣告: native-ad-integration.md
 - 預覽模式: preview-mode.md
 - 程式碼混淆: proguard.md

@@ -321,3 +321,382 @@ boolean isFullScreen ()
   */
 void setFullScreenMode (FullScreenMode mode)
 ```
+
+-------------------------------
+
+### InterstitialAd
+
+An interstitial ad is a full screen ad that you can show in your app.
+
+*** Constructor ***
+```
+/**
+ * Constructs a InterstitialAd using the given context and placement.
+ *
+ * @param context Android context
+ * @param placement Placement name
+ */
+InterstitialAd (Context context, String placement)
+```
+
+*** Instance Methods ***
+
+```
+ /**
+  * Sets ad event callback listener.
+  *
+  * @param listener Interstitial Ad event callback listener
+  */
+void setAdListener (InterstitialAdListener listener)
+```
+
+```
+ /**
+  * Loads an ad.
+  */
+void loadAd ()
+```
+
+```
+ /**
+  * Loads an ad.
+  * @param timeout request timeout in millisecond, if timeout is zero, we will use blocking call in the main thread
+  */
+void loadAd (long timeout)
+```
+
+```
+ /**
+  * If your interstitial ad has been loaded successfully, 
+  * then you can call this method to pop-up the intersitital ad
+  */
+void show ()
+```
+
+```
+ /**
+  * If your interstitial ad has been loaded successfully, you can call this method
+  * to show the interstitial ad.
+  * 
+  * the overridePendingTransition is only support single-offer and portrait
+  * ad
+  * 
+  * @param enterAnim A resource ID of the animation resource to use for the incoming activity. Use 0 for no animation.
+  * @param exitAnim A resource ID of the animation resource to use for the outgoing activity. Use 0 for no animation.
+  **/
+void show (int enterAnim, int exitAnim)
+```
+
+```
+ /**
+  * Sets interstitial ad auto close after engaged
+  * @param isAutoClose 
+  */
+void setAutoCloseWhenEngaged (boolean isAutoClose)
+```
+
+```
+ /**
+  * Destroy and release memory
+  */
+void void destroy ()
+```
+
+```
+ /**
+  * To close the interstitial ad directly
+  */
+void close ()
+```
+
+```
+ /**
+  * @return The ad id.
+  */
+int getAdId ()
+```
+
+```
+ /**
+  * @return The engage url.
+  */
+String getEngageUrl ()
+```
+
+-------------------------------
+
+### InterstitialAd.InterstitialAdListener
+
+The InterstitialAdListener interface is notified of events in the ad control life-cycle.
+
+*** Instance Methods ***
+
+```
+ /**
+  * Called when an error happened while the ad control is attempting to load an ad.
+  * 
+  * @param ad The ad control
+  * @param error Error
+  */
+void onError (Ad ad, AdError error)
+```
+
+```
+ /**
+  * Called when the ad control has loaded an ad
+  *
+  * @param ad The ad control
+  */
+void onAdLoaded (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control is clicked and user is 
+  * redirected to the link in the ad.
+  *
+  * @param ad The ad control
+  */
+void onAdClicked (Ad ad)
+```
+
+```
+ /**
+  * Where relevant, use this function to pause your app's flow
+  *
+  * @param ad The ad control
+  */
+void onInterstitialDisplayed (Ad ad)
+```
+
+```
+ /**
+  * Use this function to resume your app's flow
+  *
+  * @param ad The ad control
+  */
+void onInterstitialDismissed (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has impressioned an ad
+  *
+  * @param ad The ad control
+  */
+void onAdImpression (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has muted an ad
+  *
+  * @param ad The ad control
+  */
+void onAdMute (Ad ad)
+```
+
+```
+ /**
+  * Called when the ad control has unmuted an ad
+  *
+  * @param ad The ad control
+  */
+void onAdUnmute (Ad ad)
+```
+-------------------------------
+
+### DisplayAd
+
+An display ad is a card ad that you can show in your app. App has to control AD's behavior.
+
+*** Constructor ***
+```
+/**
+* Constructs a DisplayAd using the given context and placement.
+*
+* @param context Android context
+* @param placement Placement name
+*/
+DisplayAd (Context context, String placement)
+```
+
+*** Instance Methods ***
+
+```
+/**
+* Sets ad event callback listener.
+*
+* @param listener Ad event callback listener
+*/
+void setAdListener (AdListener listener)
+```
+
+```
+/**
+* Loads an ad.
+*/
+void loadAd ()
+```
+
+```
+/**
+* Loads an ad.
+* @param timeout request timeout in millisecond, if timeout is zero, we will use blocking call in the main thread
+*/
+void loadAd (long timeout)
+```
+
+```
+/**
+* If you has multi display ad that you can control the ad display order, 
+* @param place display ad order
+*/
+void setPlace (int place)
+```
+
+```
+/**
+* Sets display ad view width. 
+* SDK will adjust the ad view height when you set width.
+* 
+* @param width display ad width
+**/
+void setWidth (int width)
+```
+
+```
+/**
+* Gets display ad view.
+*/
+void getView ()
+```
+
+```
+/**
+* Enable video format display ad auto playback when ad view is showing on screen. 
+* @param autoplay enable display ad view auto playback
+*/
+void void setAutoplay (boolean autoplay)
+```
+
+```
+/**
+* To play video format display ad.
+*/
+void play ()
+```
+
+```
+/**
+* To stop playback video format display ad.
+*/
+void stop ()
+```
+
+```
+/**
+* To control video format display ad volume mute.
+*/
+void mute ()
+```
+
+```
+/**
+* To control video format display ad volume unmute.
+*/
+void unmute ()
+```
+
+```
+/**
+* To check video format display ad volume mute.
+*/
+boolean isMute ()
+```
+
+```
+/**
+* Destroy and release memory
+*/
+void void destroy ()
+```
+
+```
+/**
+* @return The ad id.
+*/
+int getAdId ()
+```
+
+```
+/**
+* @return The engage url.
+*/
+String getEngageUrl ()
+```
+-------------------------------
+
+### AdListener
+
+The AdListener interface is notified of events in the ad control life-cycle.
+
+*** Instance Methods ***
+
+```
+/**
+* Called when an error happened while the ad control is attempting to load an ad.
+* 
+* @param ad The ad control
+* @param error Error
+*/
+void onError (Ad ad, AdError error)
+```
+
+```
+/**
+* Called when the ad control has loaded an ad
+*
+* @param ad The ad control
+*/
+void onAdLoaded (Ad ad)
+```
+
+```
+/**
+* Called when the ad control is clicked and user is 
+* redirected to the link in the ad.
+*
+* @param ad The ad control
+*/
+void onAdClicked (Ad ad)
+```
+
+```
+/**
+* Called when the ad control has impressioned an ad
+*
+* @param ad The ad control
+*/
+void onAdImpression (Ad ad)
+```
+
+```
+/**
+* Called when the ad control has muted an ad
+*
+* @param ad The ad control
+*/
+void onAdMute (Ad ad)
+```
+
+```
+/**
+* Called when the ad control has unmuted an ad
+*
+* @param ad The ad control
+*/
+void onAdUnmute (Ad ad)
+```
+
+
