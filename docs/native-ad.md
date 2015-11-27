@@ -2,25 +2,25 @@
 
 - 支援圖片與視頻
 
-- 視頻廣告預設為靜音播放
+- 視頻廣告預設為靜音播放，待點擊後可開啟聲音
 
-- APP可取得廣告標題與描述，創建客製化廣告呈現
+- App 可取得廣告標題與描述，創建客製化廣告呈現
 
 ### 廣告要求方式
 
-- 實例化`NativeAd`類別，並帶入廣告版位名稱
+- 實例化 `NativeAd` 類別，並帶入廣告版位名稱
 
 ```java
   NativeAd mNativeAd = new NativeAd(mActivity, 廣告版位名稱);
 ```
 
-- 宣告`MediaView`類別
+- 宣告 `MediaView` 類別
 
 ```java
   private MediaView mMediaView = null;
 ```
 
-- 設定`AdListener`回調
+- 設定 `AdListener` 回調
 ```java
     mNativeAd.setAdListener(new AdListener() {
       
@@ -50,13 +50,13 @@
         //
         String callToAction = mNativeAd.getAdCallToAction();
 
-        //  實例化MediaView
+        //  實例化 MediaView
         //
         mMediaView = new MediaView(this);
         mMediaView.setNativeAd(mNativeAd);
 
-        //  將標題、描述、點擊說明文字與MediaView
-        //  加載至UI佈局裡
+        //  將標題、描述、點擊說明文字與 MediaView
+        //  加載至 UI 佈局裡
         ...
         ...
         ...
@@ -77,13 +77,13 @@
 
       @Override
       public void onAdMute(Ad ad) {
-        //  若廣告為視頻廣告時，SDK可回傳靜音事件
+        //  若廣告為視頻廣告時，SDK 可回傳靜音事件
         //
       }
 
       @Override
       public void onAdUnmute(Ad ad) {
-        //  若廣告為視頻廣告時，SDK可回傳開啟聲音事件
+        //  若廣告為視頻廣告時，SDK 可回傳開啟聲音事件
         //
       }
     });
@@ -92,7 +92,7 @@
 ### 廣告控制方式
 
 - 播放廣告
-    - 請在APP在前景，且廣告進入螢幕可視範圍後呼叫
+    - 請在 App 在前景，且廣告進入螢幕可視範圍後呼叫
 ```java
     if (mMediaView != null) {
       mMediaView.play();
@@ -100,7 +100,7 @@
 ``` 
 
 - 暫停廣告
-    - 請在`onPause()`,或是廣告移出螢幕後呼叫
+    - 請在 `onPause()`，或是廣告移出螢幕後呼叫
 ```java
     if (mMediaView != null) {
       mMediaView.stop();
@@ -127,7 +127,7 @@
 
 ### 進階整合
 
-- 若廣告在onAdLoad()時，希望直接播放，請在實例化MediaView後，設定setAutoPlay()
+- 若廣告在 onAdLoad() 時，希望直接播放，請在實例化 MediaView 後，設定 setAutoPlay()
 ```java
   mMediaView.setAutoplay(true);
 ``` 
