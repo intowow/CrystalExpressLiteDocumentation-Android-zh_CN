@@ -93,6 +93,14 @@ void loadAd()
 
 ```
  /**
+  * Loads an ad.
+  * @param timeout request timeout in millisecond, if timeout is zero, we will use blocking call in the main thread
+  */
+void loadAd (long timeout)
+```
+
+```
+ /**
   * Registers the given view as the container for the NativeAd 
   * to handle impressions and clicks. Applies a click handler 
   * to the entire unit.
@@ -158,7 +166,7 @@ boolean hasVideoContent ()
 
 -------------------------------
 
-### NativeAd.AdListener
+### NativeAd.AdListener (Deprecated)
 
 The AdListener interface is notified of events in the ad control life-cycle.
 
@@ -504,6 +512,36 @@ void onAdMute (Ad ad)
   */
 void onAdUnmute (Ad ad)
 ```
+
+```
+ /**
+  * Called when the video ad start
+  *
+  * @param ad The ad control
+  */
+void onVideoStart(Ad ad);
+```
+
+```
+ /**
+  * Called when the video ad play complete
+  *
+  * @param ad The ad control
+  */
+void onVideoEnd(Ad ad);
+```
+
+```
+ /**
+  * Called when the video ad play in progress
+  *
+  * @param ad The ad control
+  * @param totoalDuration The totoal duration of the video ad
+  * @param currentPosition The current play position of the video ad
+  */
+void onVideoProgress(Ad ad, int totoalDuration, int currentPosition);
+```
+
 -------------------------------
 
 ### DisplayAd
