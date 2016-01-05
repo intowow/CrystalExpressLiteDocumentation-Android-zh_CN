@@ -132,6 +132,42 @@
           //  用戶點擊開機蓋屏
           //
         }
+
+        @Override
+        public void onAdImpression(Ad ad) {
+          //  廣告曝光
+          //
+        }
+
+        @Override
+        public void onAdMute(Ad ad) {
+          //  若廣告為視頻廣告時，SDK可回傳靜音事件
+          //
+        }
+
+        @Override
+        public void onAdUnmute(Ad ad) {
+          //  若廣告為視頻廣告時，SDK可回傳開啟聲音事件
+          //
+        }
+
+        @Override
+        public void onVideoStart(Ad ad) {
+          //  若廣告為視頻廣告時，SDK可回傳視頻啟動事件
+          //
+        }
+
+        @Override
+        public void onVideoProgress(Ad ad, int totoalDuration, int currentPosition) {
+          //  若廣告為視頻廣告時，SDK可回傳視頻進行事件
+          //
+        }
+
+        @Override
+        public void onVideoEnd(Ad ad) {
+          //  若廣告為視頻廣告時，SDK可回傳視頻結束事件
+          //
+        }
         
       });
       

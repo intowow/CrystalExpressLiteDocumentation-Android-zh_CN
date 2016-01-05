@@ -19,6 +19,24 @@ private void showNativeAd() {
 
     @Override
     public void onAdLoaded(NativeAd ad) {}
+
+    @Override
+    public void onAdImpression(Ad ad) {}
+
+    @Override
+    public void onAdMute(Ad ad) {}
+
+    @Override
+    public void onAdUnmute(Ad ad) {}
+
+    @Override
+    public void onVideoStart(Ad ad) {}
+
+    @Override
+    public void onVideoProgress(Ad ad, int totoalDuration, int currentPosition) {}
+
+    @Override
+    public void onVideoEnd(Ad ad) {}
   }
   nativeAd.loadAd();
 }
